@@ -1,6 +1,4 @@
-
-
-plot1 <- function(energydata = "NODATA", energyfile = FALSE){
+plot2 <- function(energydata = "NODATA", energyfile = FALSE){
   if ( energydata == "NODATA" ){
     source("readProjectData.R")
     if (energyfile == FALSE) {
@@ -10,10 +8,10 @@ plot1 <- function(energydata = "NODATA", energyfile = FALSE){
     }
   }
   
-  png("plot1.png")
+  png("plot2.png")
   
-  hist(energydata$Global_active_power, col="red", xlab="Global Active Power (kilowatts)", ylab="Frequency", main="Global Active Power")
-  
+  plot(energydata$DateTime, energydata$Global_active_power, type="l", ylab="Global Active Power (kilowatts)", xlab="")
+
   dev.off()
   
 }

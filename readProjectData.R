@@ -22,16 +22,15 @@ readProjectData <- function(datafile="household_power_consumption.txt") {
   data <- data[data$Date=="1/2/2007" | data$Date=="2/2/2007",]
   
   makeTime <- function(date, time) {
-    dateTime <- as.character(paste(date, time, sep=" "))
-    
-    strptime(dateTime, format="%d/%m/%Y %H:%M:%S")
-    
-    dateTime
-    
+    as.character(paste(date, time, sep=" "))    
   }
   
   
-  data <- cbind(mapply(makeTime, data$Date, data$Time), data)
+  data <- cbind(
+    strptime(
+      mapply(makeTime, data$Date, data$Time), 
+      format="%d/%m/%Y %H:%M:%S"), 
+    data)
   
   colnames(data)[1] <- "DateTime"
   
